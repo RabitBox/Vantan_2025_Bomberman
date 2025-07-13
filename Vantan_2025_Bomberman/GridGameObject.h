@@ -1,9 +1,12 @@
 ﻿#pragma once
 
-namespace Grid {
+namespace Grid
+{
 	class GameObject
 	{
-
+	public:
+		GameObject() {}
+		virtual ~GameObject() {}
 	};
 }
 
