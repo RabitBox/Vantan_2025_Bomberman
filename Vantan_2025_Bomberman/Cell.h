@@ -12,7 +12,7 @@ namespace Grid
 		int Type;
 
 		/// @brief セルに紐づくオブジェクト
-		//std::unique_ptr<GameObject> Obj;
+		std::shared_ptr<GameObject> Obj;
 	};
 }
 
