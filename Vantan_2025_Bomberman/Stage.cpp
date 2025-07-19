@@ -1,5 +1,6 @@
 ﻿#include "stdafx.h"
 #include "Stage.h"
+#include "Obstacle.h"
 
 Stage::Stage(int x, int y)
 	: WIDTH	(3 + (2 * x))
@@ -21,6 +22,21 @@ Stage::Stage(int x, int y)
 					_grids[index].Type = 1;
 				}
 			}
+		}
+	}
+}
+
+Stage::~Stage() {}
+
+void Stage::BuildStage() {
+	for (auto& obj : _grids) {
+		switch (obj.Type) {
+		case 1:
+			obj.Obj = Obstacle::create(obj.Type);
+			break;
+
+		default:
+			break;
 		}
 	}
 }

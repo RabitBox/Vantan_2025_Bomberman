@@ -17,5 +17,8 @@ private:
 
 public:
 	Stage(int x, int y);
+	virtual ~Stage();
+
+	void BuildStage();
 };
 

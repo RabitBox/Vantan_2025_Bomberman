@@ -7,7 +7,7 @@ namespace Grid
 	public:
 		GameObject() {}
 		virtual ~GameObject() {}
+
+		virtual void draw() = 0;
 	};
 }
-
-

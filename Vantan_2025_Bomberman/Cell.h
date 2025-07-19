@@ -1,6 +1,5 @@
 ﻿#pragma once
-
-class GameObject;
+#include "GridGameObject.h"
 
 namespace Grid
 {
