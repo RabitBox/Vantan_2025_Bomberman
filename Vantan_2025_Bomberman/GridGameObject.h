@@ -7,9 +7,6 @@ namespace Grid
 	class GameObject
 	{
 	public:
-		/*class Stage;*/
-
-	public:
 		GameObject() {}
 		virtual ~GameObject() {}
 

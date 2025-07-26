@@ -87,3 +87,12 @@ bool Stage::tryMoveTo(int x, int y)
 	}
 	return false;
 }
+
+void Stage::swapObj(int fromX, int fromY, int toX, int toY)
+{
+	auto from = fromX + fromY * WIDTH;
+	auto to = toX + toY * WIDTH;
+
+	_grids[to].Obj = _grids[from].Obj;
+	_grids[from].Obj = nullptr;
+}

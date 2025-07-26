@@ -1,5 +1,6 @@
 ﻿#include "stdafx.h"
 #include "Obstacle.h"
+#include "GameObjectManager.h"
 
 namespace {
 	constexpr int SIZE = 80;
@@ -29,6 +30,7 @@ namespace Grid
 	std::shared_ptr<Obstacle> Obstacle::create(Cell& cell)
 	{
 		auto obj = std::make_shared<Obstacle>(cell.Type, cell.X, cell.Y);
+		GameObjectManager::getInstance().add(obj);
 		return obj;
 	}
 

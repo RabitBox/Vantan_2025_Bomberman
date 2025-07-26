@@ -1,10 +1,13 @@
 ﻿# include <Siv3D.hpp> // Siv3D v0.6.16
 #include "Stage.h"
+#include "GameObjectManager.h"
 
 void Main()
 {
 	// 背景の色を設定する | Set the background color
 	Scene::SetBackground(ColorF{ 0.6, 0.8, 0.7 });
+
+	auto& objectManager = GameObjectManager::getInstance();
 
 	std::unique_ptr<Stage> stage = std::make_unique<Stage>(3, 2);
 	stage->BuildStage();
@@ -39,8 +42,12 @@ void Main()
 
 	while (System::Update())
 	{
-		stage->update();
-		stage->draw();
+		objectManager.update();
+		objectManager.draw();
+
+		//stage->update();
+		//stage->draw();
+
 		//// テクスチャを描く | Draw the texture
 		//texture.draw(20, 20);
 
@@ -98,6 +105,8 @@ void Main()
 		//// プレイヤーを描く | Draw the player
 		//emoji.scaled(0.75).mirrored(isPlayerFacingRight).drawAt(playerPosX, 540);
 	}
+
+	objectManager.dispose();
 }
 
 //

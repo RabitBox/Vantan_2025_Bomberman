@@ -25,5 +25,6 @@ public:
 	void update();
 
 	bool tryMoveTo(int x, int y);
+	void swapObj(int fromX, int fromY, int toX, int toY);
 };
 
