@@ -39,6 +39,7 @@ void Main()
 
 	while (System::Update())
 	{
+		stage->draw();
 		//// テクスチャを描く | Draw the texture
 		//texture.draw(20, 20);
 

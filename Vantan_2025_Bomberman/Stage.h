@@ -20,5 +20,7 @@ public:
 	virtual ~Stage();
 
 	void BuildStage();
+
+	void draw();
 };
 

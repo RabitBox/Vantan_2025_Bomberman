@@ -11,11 +11,15 @@ Stage::Stage(int x, int y)
 	for (int dx = 0; dx < WIDTH; dx++) {
 		for (int dy = 0; dy < HEIGHT; dy++) {
 			int index = dy * WIDTH + dx;
+			_grids[index].X = dx;
+			_grids[index].Y = dy;
+
 			if (dx == 0
 				|| dy == 0
 				|| dx == (WIDTH - 1)
 				|| dy == (HEIGHT - 1)) {
 				_grids[index].Type = 1;
+
 			}
 			else {
 				if (dx % 2 == 0 && dy % 2 == 0) {
@@ -32,11 +36,19 @@ void Stage::BuildStage() {
 	for (auto& obj : _grids) {
 		switch (obj.Type) {
 		case 1:
-			obj.Obj = Obstacle::create(obj.Type);
+			obj.Obj = Obstacle::create(obj);
 			break;
 
 		default:
 			break;
+		}
+	}
+}
+
+void Stage::draw() {
+	for (auto& obj : _grids) {
+		if (obj.Obj) {
+			obj.Obj->draw();
 		}
 	}
 }

@@ -7,6 +7,10 @@ namespace Grid
 	struct Cell
 	{
 	public:
+		int X;
+
+		int Y;
+
 		/// @brief セルの属性
 		int Type;
 
