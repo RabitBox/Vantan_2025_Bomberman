@@ -35,4 +35,6 @@ namespace Grid
 	void Obstacle::draw() {
 		_rect.draw();
 	}
+
+	void Obstacle::update() {}
 }

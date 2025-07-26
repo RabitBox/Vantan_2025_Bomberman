@@ -28,6 +28,7 @@ namespace Grid
 		static std::shared_ptr<Obstacle> create(Cell& cell);
 
 		void draw() override;
+		void update() override;
 	};
 }
 

@@ -1,12 +1,20 @@
 ﻿#include "stdafx.h"
 #include "Stage.h"
 #include "Obstacle.h"
+#include "Player.h"
+
+enum CellType {
+	WALL = 1,
+	PLAYER = 10,
+};
 
 Stage::Stage(int x, int y)
 	: WIDTH	(3 + (2 * x))
 	, HEIGHT(3 + (2 * y))
 {
 	_grids.resize(WIDTH * HEIGHT);
+
+	bool isPlayerPlaced = false;
 
 	for (int dx = 0; dx < WIDTH; dx++) {
 		for (int dy = 0; dy < HEIGHT; dy++) {
@@ -18,13 +26,18 @@ Stage::Stage(int x, int y)
 				|| dy == 0
 				|| dx == (WIDTH - 1)
 				|| dy == (HEIGHT - 1)) {
-				_grids[index].Type = 1;
-
+				_grids[index].Type = CellType::WALL;
+				continue;
 			}
 			else {
 				if (dx % 2 == 0 && dy % 2 == 0) {
-					_grids[index].Type = 1;
+					_grids[index].Type = CellType::WALL;
 				}
+			}
+
+			if (isPlayerPlaced == false) {
+				isPlayerPlaced = true;
+				_grids[index].Type = CellType::PLAYER;
 			}
 		}
 	}
@@ -35,8 +48,13 @@ Stage::~Stage() {}
 void Stage::BuildStage() {
 	for (auto& obj : _grids) {
 		switch (obj.Type) {
-		case 1:
+		case CellType::WALL:
 			obj.Obj = Obstacle::create(obj);
+			break;
+
+		case CellType::PLAYER:
+			obj.Obj = Player::create(obj);
+			obj.Obj->setOwner( this );
 			break;
 
 		default:
@@ -51,4 +69,21 @@ void Stage::draw() {
 			obj.Obj->draw();
 		}
 	}
+}
+
+void Stage::update() {
+	for (auto& obj : _grids) {
+		if (obj.Obj) {
+			obj.Obj->update();
+		}
+	}
+}
+
+bool Stage::tryMoveTo(int x, int y)
+{
+	auto index = x + y * WIDTH;
+	if (_grids[index].Obj == nullptr) {
+		return true;
+	}
+	return false;
 }

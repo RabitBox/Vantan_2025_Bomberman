@@ -22,5 +22,8 @@ public:
 	void BuildStage();
 
 	void draw();
+	void update();
+
+	bool tryMoveTo(int x, int y);
 };
 
